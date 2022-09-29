@@ -1,0 +1,110 @@
+/* ==========
+  CUSTOM PROPERTIES
+=========== */
+:root {
+    --clr-primary-400: hsl(0, 36%, 70%);
+    --clr-primary-600: hsl(0, 93%, 68%);
+
+    --clr-neutral-900: hsl(0, 6%, 24%);
+
+    --btn-gradient: 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%);
+    --btn-gradient-hover: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+
+    --ff-primary: 'Josefin Sans', sans-serif;
+
+    --fs-400: 1rem;
+
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-600: 600;
+}
+
+/* ==========
+  RESET
+=========== */
+
+/* sets box sizing rules */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/* sets root core defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* sets body core defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+/* resets margins */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* removes unnecessary space caused by lineheight */
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.1;
+}
+
+/* gives a elements without class default styling */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* makes images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* removes default styling from ul, ol elements that have the role of list */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* inherits fonts for buttons and inputs */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* removes animations, transitions and smooth scroll for people who prefer not to see these */
+@media(prefers-reduced-motion: reduce) {
+
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::after,
+    *::before {
+        animation-iteration-count: 1 !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
