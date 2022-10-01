@@ -21,6 +21,12 @@
     --fw-600: 600;
 }
 
+@media(min-width: 40em) {
+    :root {
+        --fs-900: 3.5rem;
+    }
+}
+
 /* ==========
   RESET
 =========== */
@@ -52,7 +58,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
 }
 
 /* resets margins */
@@ -129,10 +135,28 @@ textarea {
     background-color: hsl(var(--clr-primary-400));
     color: white;
 }
+
+main {
+    min-height: inherit;
+}
+
+
 button {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+footer {
+    padding-inline: clamp(1rem, 2vw, 3rem);
+}
+
+@media(min-width: 40em) {
+    
+    footer {
+        inset: auto 0 0 auto;
+        position: absolute;
+    }
 }
 
 /* ===============
@@ -141,7 +165,7 @@ button {
 
 .container {
     width: 90%;
-    max-width: 40rem;
+    max-width: 40ch;
     margin-inline: auto;
 }
 
@@ -164,8 +188,10 @@ button {
 .text-light { color: hsl(var(--clr-primary-400));}
 .text-thin { font-weight: var(--fw-300);}
 .text-bold { font-weight: var(--fw-600);}
+.text-center { text-align: center; }
 .letter-spacing { letter-spacing: 1rem;}
 .uppercase { text-transform: uppercase;}
+.d-block { display: block }
 
 .sr-only {
     position: absolute !important;
@@ -180,7 +206,7 @@ button {
 }
 
 /* ===============
-  UTILITY CLASSES
+  LAYOUT
 ================= */
 
 .grid--hero {
@@ -195,9 +221,12 @@ button {
 .grid--hero > .logo {
     grid-area: logo;
     padding-block: 2rem;
+
+    justify-content: start;
+    align-items: center;
 }
 
-.grid--hero > .logo > img {
+.grid--hero > .logo img {
     width: 30%;
 }
 
@@ -211,6 +240,38 @@ button {
 
 .grid--hero > picture {
     grid-area: picture;
+}
+
+.grid--hero > picture > img {
+    height: 100%;
+}
+
+
+@media(min-width: 40em) {
+    .grid--hero {
+        grid-template-columns: minmax(0, 0.5rem) 1fr .75fr;
+        grid-template-areas: 
+        ". logo picture "
+        ". contents picture ";
+        column-gap: 1rem;
+    }
+
+    .grid--hero > .logo {
+       padding-block: 0;
+    }
+    .grid--hero > .logo > img {
+        width: 10rem;
+    }
+    
+    .grid--hero > .contents {
+        text-align: left;
+    }    
+}
+
+@media(min-width: 95em) {
+    .grid--hero {
+        grid-template-columns: minmax(0, 0.5rem) 1fr .6fr;
+    }   
 }
 
 form .wrapper {
@@ -230,10 +291,10 @@ form .wrapper:focus-within {
 }
 
 form input {   
-    width: 80%; 
+    width: 90%; 
     padding-block: 0.75rem;
-    padding-inline: 0.25rem;
-    margin-inline-end: 2rem;
+    padding-inline: .5rem;
+    margin-inline: auto;
     border: none;
     background: transparent;
 }
@@ -254,7 +315,7 @@ form .submit-btn {
     position: absolute;
     inset: -2px -2px -2px auto;
     padding-block: 0.75rem;
-    padding-inline: 1.75rem;
+    padding-inline: clamp(1.75rem, 5vw, 2.25rem);
     background-image: linear-gradient(135deg, hsl(var(--clr-primary-500)), hsl(var(--clr-primary-600)) );
     border-radius: inherit;
     box-shadow: 0 .75rem 1rem hsl(var(--clr-primary-400) / .6);
@@ -284,9 +345,11 @@ form .submit-btn:focus::after {
 }
 
 .attribution {
+    padding-block: .25rem;
     font-size: 11px;
     text-align: center;
+    color: hsl(var(--clr-neutral-900));
   }
   .attribution a {
-    color: hsl(var(--clr-neutral-900));
+    color: hsl(var(--clr-primary-600));
   }
