@@ -1,0 +1,86 @@
+@use '../abstracts/' as *;
+
+.form {
+  &__wrapper {
+    margin-block-start: $form-gap-top-min;
+    border: $form-border-width solid rgba(clr(primary, 500), 0.3);
+    border-radius: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 0fr max-content;
+    gap: $form-items-gap;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+    &::after {
+      content: attr(data-message);
+      position: absolute;
+      inset: auto auto -2em 1.5em;
+      opacity: 0;
+      transform: translateX(-50%);
+      transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
+    }
+
+    &:focus-within {
+      border: none;
+      outline: $form-border-width solid clr(primary, 300);
+    }
+
+    @include mq(small) {
+      margin-block-start: $form-gap-top-max;
+    }
+
+    .error-icon {
+      grid-column: 2;
+      transform: scale(0);
+      transition: transform 500ms ease-in-out;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding-block: $input-padding-block;
+    padding-inline: $input-padding-inline;
+    margin-inline: auto;
+    border: none;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba(clr(primary, 500), 0.5);
+    }
+  }
+}
+
+.error {
+  .form__wrapper {
+    border: $form-border-width solid clr(primary, 800);
+    grid-template-columns: 1fr max-content max-content;
+
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  .form__wrapper::after {
+    color: clr(primary, 800);
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .error-icon {
+    transform: scale(1);
+    outline: 2px dolid;
+  }
+}
+
+.success {
+  .form__wrapper::after {
+    color: clr(primary, 500);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
