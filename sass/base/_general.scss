@@ -1,0 +1,35 @@
+@use '../abstracts/' as *;
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: $ff-primary;
+  font-size: fs(400);
+  font-weight: $fw-400;
+  color: clr(primary, 500);
+  background-image: linear-gradient(
+    135deg,
+    clr(neutral, 100),
+    clr(primary, 100)
+  );
+  position: relative;
+}
+
+main {
+  min-height: 100dvh;
+  @include mq(small) {
+    height: 100dvh;
+  }
+}
+
+footer {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding-inline: clamp(1rem, 2vw, 3rem);
+  text-align: center;
+  @include mq(small) {
+    inset: auto auto 0 0;
+    text-align: left;
+  }
+}
