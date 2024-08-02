@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'JosefinSans';
+  font-weight: 100 700;
+  src: url('/fonts/JosefinSans-VariableFont_wght.ttf')
+      format('woff2-variations'),
+    url('/fonts/JosefinSans-VariableFont_wght.ttf');
+}
+
+$ff-primary: 'JosefinSans', sans-serif;
+
+$font-sizes: (
+  700: clamp(2.5rem, 2.5rem + 1vw, 4rem),
+  400: clamp(0.875rem, 0.875rem + 0.25vw, 1rem),
+);
+
+$fw-300: 300;
+$fw-400: 400;
+$fw-600: 600;
