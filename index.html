@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Frontend Mentor | Base Apparel coming soon page</title>
   <link rel="stylesheet" href="/sass/main.scss">
+  <script type="module" src="/js/validation.js" defer></script>
+  <script type="module" src="/js/animations.js" defer></script>
 </head>
 
 <body>
@@ -15,42 +17,46 @@
       <img src="images/logo.svg" alt="base apparel" />
     </header>
 
-    <div class="main-content flow">
-      <h1 class="fs-700 clr-neutral-900 uppercase letter-spacing">
-        <span class="fw-light clr-primary-500 d-block">We're</span> coming soon
-      </h1>
-      <p>
-        Hello fellow shoppers! We're currently building our new fashion store.
-        Add your email below to stay up-to-date with announcements and our
-        launch deals.
-      </p>
+    <div class="main-content">
+      <header class="flow">
+        <h1 class="page-title">
+          <span class="title-accent">We're</span><span>coming</span> <span>soon</span>
+        </h1>
+        <p>
+          Hello fellow shoppers! We're currently building our new fashion store.
+          Add your email below to stay up-to-date with announcements and our
+          launch deals.
+        </p>
+      </header>
 
       <form action="#" class="form">
-        <div class="form__wrapper">
-          <div class="text-center">
-            <label for="email" class="sr-only">Your email <address></address></label>
-            <input id="email" name="email" type="email" placeholder="Email Address" required />
-          </div>
-          <div class="error-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-              <g fill="none" fill-rule="evenodd">
-                <circle cx="12" cy="12" r="12" fill="#F96464" />
-                <path fill="#FFF" fill-rule="nonzero" d="M13.256 6v9.056h-2V6h2zm-.944 12.464c-.384 0-.699-.104-.944-.312a1.027 1.027 0 0 1-.368-.824c0-.33.125-.608.376-.832.25-.224.563-.336.936-.336.373 0 .68.112.92.336.24.224.36.501.36.832 0 .341-.117.616-.352.824-.235.208-.544.312-.928.312z" />
-              </g>
-            </svg>
-          </div>
-          <button type="submit" class="button" data-button="primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20">
-              <path fill="none" stroke="#FFF" stroke-width="2" d="M1 1l8.836 8.836L1 18.671" />
-            </svg>
-          </button>
+
+        <div class="text-center">
+          <label for="email" class="sr-only">Your email address</label>
+          <input id="email" name="email" type="email" placeholder="Email Address" required />
         </div>
+        <div class="error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <g fill="none" fill-rule="evenodd">
+              <circle cx="12" cy="12" r="12" fill="#F96464" />
+              <path fill="#FFF" fill-rule="nonzero" d="M13.256 6v9.056h-2V6h2zm-.944 12.464c-.384 0-.699-.104-.944-.312a1.027 1.027 0 0 1-.368-.824c0-.33.125-.608.376-.832.25-.224.563-.336.936-.336.373 0 .68.112.92.336.24.224.36.501.36.832 0 .341-.117.616-.352.824-.235.208-.544.312-.928.312z" />
+            </g>
+          </svg>
+        </div>
+
+        <button type="submit" class="button" data-button="primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20">
+            <path fill="none" stroke="#FFF" stroke-width="2" d="M1 1l8.836 8.836L1 18.671" />
+          </svg>
+        </button>
+
+
       </form>
     </div>
 
     <picture>
       <source srcset="images/hero-desktop.jpg" media="(min-width: 40em)" />
-      <img src="images/hero-mobile.jpg" alt="a young woman presenting orange shirt and a bracelet" />
+      <img src="images/hero-mobile.jpg" alt="a young woman presenting orange shirt and a bracelet" class="hero-img" />
     </picture>
 
     <img class="bg-img" src="images/bg-pattern-desktop.svg" alt="" />
@@ -63,7 +69,6 @@
       <a href="https://www.frontendmentor.io/profile/ania221B">ania221B</a>.
     </p>
   </footer> -->
-  <script type="module" src="/main.js"></script>
 </body>
 
 </html>
