@@ -1,0 +1,21 @@
+@use '../abstracts/' as *;
+
+.page-title {
+  font-size: fs(700);
+  color: clr(neutral, 900);
+  text-transform: uppercase;
+  opacity: 1;
+  letter-spacing: 1.0825rem;
+  font-weight: 700;
+
+  span {
+    display: block;
+  }
+
+  .title-accent {
+    display: block;
+    font-weight: 300;
+    color: clr(primary, 500);
+    transition: inherit;
+  }
+}
