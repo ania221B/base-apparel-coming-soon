@@ -2,43 +2,40 @@
 
 .form {
   margin-block-start: $form-gap-top-min;
-  border: $form-border-width solid rgba(clr(primary, 500), 0.3);
-  border-radius: 50vw;
+
   display: grid;
-  grid-template-columns: 1fr 0fr max-content;
-  gap: $form-items-gap;
-  justify-content: space-around;
+  grid-template-columns: 1fr max-content;
   align-items: center;
   position: relative;
 
-  &::after {
-    content: attr(data-message);
-    position: absolute;
-    inset: auto auto -2em 1.5em;
-    opacity: 0;
-    transform: translateX(-50%);
-    transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
+  &__wrapper {
+    width: calc(100% + 1.75rem);
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 0fr 1.75rem;
+    border: $form-border-width solid rgba(clr(primary, 500), 0.3);
+    border-right: none;
+    border-radius: 25vw 0 0 25vw;
   }
 
-  &:focus-within {
-    border: $form-border-width solid clr(primary, 300);
-  }
-
-  @include mq(small) {
-    margin-block-start: $form-gap-top-max;
-  }
-
-  .error-icon {
-    grid-column: 2;
-    transform: scale(0);
-    transition: transform 500ms ease-in-out;
+  .input-group {
+    width: 100%;
+    padding-block: calc($form-border-width * 2);
   }
 
   input {
     width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin-block: auto;
     padding-block: $input-padding-block;
     padding-inline: $input-padding-inline;
-    margin-inline: auto;
+
     border: none;
     background: transparent;
 
@@ -52,34 +49,91 @@
   }
 
   .button {
-    grid-column: 3;
+    grid-column: 2;
+    grid-row: 1;
+    margin-left: auto;
+    border-radius: 50vw;
+  }
+
+  .error-icon {
+    grid-column: 2;
+    align-self: center;
+    margin-inline-end: $form-items-gap;
+    transform: scale(0);
+  }
+
+  &:focus-within {
+    outline: none;
+  }
+
+  &:focus-within .form__wrapper {
+    border: $form-border-width solid clr(primary, 300);
+    border-right: none;
+  }
+
+  @include mq(small) {
+    margin-block-start: $form-gap-top-max;
   }
 }
 
-.error {
-  grid-template-columns: 1fr max-content max-content;
-  border: $form-border-width solid clr(primary, 800);
+.user-message {
+  position: absolute;
+  inset: auto auto -2em 1.5em;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
+}
 
-  &:focus-within {
+.error {
+  .form__wrapper {
+    grid-template-columns: 1fr max-content 1.75rem;
     border: $form-border-width solid clr(primary, 800);
+    border-right: none;
   }
 
-  &::after {
+  &:focus-within .form__wrapper {
+    border: $form-border-width solid clr(primary, 800);
+    border-right: none;
+  }
+
+  .user-message {
     color: clr(primary, 800);
     opacity: 1;
     transform: translateX(0);
   }
 
   .error-icon {
-    transform: scale(1);
-    outline: 2px dolid;
+    animation-name: popUp;
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.88, -0.09, 0.17, 1.1);
+    animation-fill-mode: forwards;
   }
 }
 
 .success {
-  &::after {
+  .user-message {
     color: clr(primary, 500);
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(50%);
+  }
+  10% {
+    opacity: 0.2;
+    transform: scale(0.2);
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.05) translateY(-30%);
+  }
+  100% {
+    transform: scale(1) translateY(0);
   }
 }
