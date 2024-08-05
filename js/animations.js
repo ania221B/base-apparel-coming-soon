@@ -5,7 +5,7 @@ const logo = document.querySelector('.logo img')
 const mainText = document
   .querySelector('.main-content')
   .firstElementChild.querySelector('p')
-// const formWrapper = document.querySelector('.form__wrapper')
+const form = document.querySelector('.form')
 
 const slideIn = [
   { opacity: 0, transform: 'translate3D(-25%, 0, 0)' },
@@ -50,12 +50,22 @@ const accentAnimation = titleAccent.animate(
   textTiming
 )
 const mainTextAnimation = mainText.animate(slideIn, textTiming)
-// const formWrapperAnimation = formWrapper.animate(slideIn, textTiming)
+const formAnimation = form.animate(
+  [
+    { opacity: 0, gridTemplateColumns: '0fr max-content' },
+    { opacity: 1 },
+    { gridTemplateColumns: '1fr max-content' }
+  ],
+  {
+    duration: 3600,
+    easing: 'cubic-bezier(.57,-0.22,.37,1.22)'
+  }
+)
 
 titleAnimation.pause()
 accentAnimation.pause()
 mainTextAnimation.pause()
-// formWrapperAnimation.pause()
+formAnimation.pause()
 
 logoAnimation.addEventListener('finish', () => {
   titleAnimation.play()
@@ -67,5 +77,5 @@ titleAnimation.addEventListener('finish', () => {
 })
 
 mainTextAnimation.addEventListener('finish', () => {
-  formWrapperAnimation.play()
+  formAnimation.play()
 })
