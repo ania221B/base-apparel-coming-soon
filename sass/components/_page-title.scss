@@ -2,11 +2,12 @@
 
 .page-title {
   font-size: fs(700);
-  color: clr(neutral, 900);
-  text-transform: uppercase;
-  opacity: 1;
-  letter-spacing: 1.0825rem;
   font-weight: 700;
+  letter-spacing: 1.0825rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: clr(neutral, 900);
+  opacity: 1;
 
   span {
     display: block;
