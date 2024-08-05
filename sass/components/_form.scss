@@ -79,9 +79,6 @@
 .user-message {
   position: absolute;
   inset: auto auto -2em 1.5em;
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
 }
 
 .error {
@@ -98,8 +95,9 @@
 
   .user-message {
     color: clr(primary, 800);
-    opacity: 1;
-    transform: translateX(0);
+    animation-name: slideIn;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
   }
 
   .error-icon {
@@ -113,8 +111,9 @@
 .success {
   .user-message {
     color: clr(primary, 500);
-    opacity: 1;
-    transform: translateX(0);
+    animation-name: slideIn;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
   }
 }
 
@@ -135,5 +134,20 @@
   }
   100% {
     transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 1;
   }
 }
