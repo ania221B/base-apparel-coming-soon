@@ -1,14 +1,18 @@
 {
-  "name": "website-starter-template",
+  "name": "base-apparel-coming-soon",
+  "homepage": "https://ania221b.github.io/base-apparel-coming-soon",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "sass": "^1.72.0",
     "vite": "^5.2.7",
     "vite-plugin-purgecss": "^0.2.12"
