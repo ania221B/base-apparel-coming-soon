@@ -16,8 +16,6 @@ This is a solution to the [Base Apparel coming soon page challenge on Frontend M
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -32,20 +30,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Mobile View](/public/screenshots/baseApparelComingSoon-mobile.png)
+![Desktop View](/public/screenshots/baseApparelComingSoon-desktop.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/ania221B/base-apparel-coming-soon)
+- Live Site URL: [GitHub Pages](https://ania221b.github.io/base-apparel-coming-soon/)
 
 ## My process
 
@@ -56,133 +47,98 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Sass
+- Web Animations API
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+**Web Animations API**. To create an animiation using Web Animations API:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+1. Select the element you want to animate:
 
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+const logo = document.querySelector('.logo img')
+```
+
+2. Create a Keyframes Object. This is an array of objects. Each object corresponds to a keyframe from a CSS animation created using `@keyframes`:
+
+```js
+const slideIn = [
+  { opacity: 0, transform: 'translate3D(-25%, 0, 0)' },
+  { opacity: 1, transform: 'translate3D(0, 0, 0)' }
+]
+```
+
+Unlike with `@keyframes`, there is no need to specify percentages. Web Animations API calculates automaticaly the timing of changes. To control when something changes you can specify `offset`:
+
+```js
+const slideIn = [
+  { opacity: 0, transform: 'translate3D(-50%, 0, 0)' },
+  { transform: 'translate3D(0, 0, 0)', offset: 0.75 },
+  { opacity: 1 }
+]
+```
+
+3. Create separate object to specify duration and `easing`, that is the equivalent of the `timing-function`:
+
+```js
+const slideInTiming = {
+  duration: 3500,
+  easing: 'ease-in-out'
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+Here the duration needs to be given in milliseconds without any unit.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+4. Use `animate()` method to play the animation:
+
+```js
+logo.animate(slideIn, slideInTiming)
+```
+
+Instead of writing separate objects for keyframes and timing you can pass the code directly into the `animate()` method:
+
+```js
+logo.animate(
+  [
+    { opacity: 0, transform: 'translate3D(-50%, 0, 0)' },
+    { transform: 'translate3D(0, 0, 0)', offset: 0.75 },
+    { opacity: 1 }
+  ],
+  {
+    duration: 3500,
+    easing: 'ease-in-out'
+  }
+)
+```
+
+If you don't want the animations immediately, you can control their playback for example with `pause()` and `play()` methods together with event listener listening for `finish` event:
+
+```js
+const logo = document.querySelector('.logo img')
+const text = document.querySelector('.main-text')
+
+const logoAnimation = logo.animate(slideIn, slideInTiming)
+const textAnimation = text.animate(showText, showTextTiming)
+
+textAnimation.pause()
+
+logoAnimation.addEventListener('finish', () => {
+  textAnimation.play()
+})
+```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- Animations - not only using Web Animations API but other tools like GSAP
+- Form Validation
+- Sass
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Using the Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API) - This is where I learnt the basics of Web Animations API and the resource I used to create the animations.
+- [Invalid event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) - This MDN article explains the `invalid` event. It helped me improve form validation.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
-
-# About
-
-- This template aims to speed up setting up and working on a project by providing basic code that you can reuse in your works
-- it uses Vite and Sass
-- The Sass files organization is based on [the 7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern)
-
-# How to use
-
-- Once you have the template in your repos, you can use it as a base for your project
-
-## With GitHub
-
-1. Go to GitHub
-2. Find the repo with the template
-3. Click the **Use this template** button on the **Code** tab
-4. Enter the name for a new repo with the project you're going to work on
-5. Add the description if you want
-6. Choose if you want it to be public or private
-7. Click **Create repository from template** button
-8. A new repo based on the template will be created
-
-## With degit
-
-1. Install [degit](https://github.com/Rich-Harris/degit), if you don't have it yet
-
-```
-npm install -g degit
-```
-
-2. Open up the terminal and use:
-
-```
-degit github-user-name/template-mame my-new-project
-```
-
-where:
-
-- `github-user-name` is the username you use on GitHub
-- `template-name` is the name of the template that will be base of your project (such as `website-starter-react-template`)
-- `my-new-project` name of the project you're going to work on
-
-In my case the above could look the following:
-
-```
-degit ania221b/website-starter-react-template to-do-list
-```
-
-You can use the terminal in VS Code, Command Prompt, Windows Powershell or a tool like [Hyper](https://hyper.is/)
-
-3. Navigate to your new project, so:
-
-```
-cd my-new-project
-```
-
-4. Perform the installation
-
-```
-npm install
-```
-
-5. Open your project up in VS code
-
-```
-code .
-```
-
-# Acknowledgements
-
-- This template was build as part of [Beyond CSS](https://www.beyondcss.dev/) course by [Kevin Powell](https://www.kevinpowell.co/)
-- You can find Kevin's template on [his GitHub](https://github.com/kevin-powell)
+- Frontend Mentor - [@ania221b](https://www.frontendmentor.io/profile/ania221b)
